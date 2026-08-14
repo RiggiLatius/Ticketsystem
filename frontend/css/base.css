@@ -1,0 +1,118 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-bg: #f4f5f7;
+  --color-surface: #ffffff;
+  --color-surface-alt: #fafbfc;
+  --color-border: #e1e4e8;
+  --color-border-strong: #c4c9d1;
+  --color-text: #1f2328;
+  --color-text-muted: #57606a;
+  --color-text-subtle: #6e7781;
+  --color-primary: #1f5aa5;
+  --color-primary-hover: #174786;
+  --color-primary-text: #ffffff;
+  --color-danger: #c8321f;
+  --color-danger-bg: #ffe8e4;
+  --color-success: #1a7f37;
+  --color-success-bg: #dcfce7;
+  --color-warning: #b76b00;
+  --color-warning-bg: #fff3d6;
+  --color-info: #0f6cbd;
+  --color-info-bg: #dbeafe;
+
+  --badge-offen-bg: #e5e7eb;
+  --badge-offen-fg: #374151;
+  --badge-inbearbeitung-bg: #dbeafe;
+  --badge-inbearbeitung-fg: #1e40af;
+  --badge-warte-bg: #fef3c7;
+  --badge-warte-fg: #92400e;
+  --badge-geloest-bg: #dcfce7;
+  --badge-geloest-fg: #166534;
+  --badge-geschlossen-bg: #cbd5e1;
+  --badge-geschlossen-fg: #1f2937;
+
+  --prio-normal-bg: #eef0f2;
+  --prio-normal-fg: #4b5563;
+  --prio-hoch-bg: #ffe4bf;
+  --prio-hoch-fg: #92400e;
+  --prio-dringend-bg: #ffd9d2;
+  --prio-dringend-fg: #991b1b;
+
+  --radius: 6px;
+  --radius-sm: 4px;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-8: 48px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 var(--space-3);
+  color: var(--color-text);
+  line-height: 1.25;
+}
+
+h1 { font-size: 22px; }
+h2 { font-size: 18px; }
+h3 { font-size: 16px; }
+
+p { margin: 0 0 var(--space-3); }
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+code, pre {
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.app-loading {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

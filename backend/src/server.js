@@ -9,6 +9,8 @@ const config = require('./config');
 const migrations = require('./db/migrations');
 const seed = require('./db/seed');
 const { notFound, errorHandler } = require('./middleware/errorHandler');
+const { attachUser } = require('./middleware/auth');
+const authRoutes = require('./routes/auth');
 
 migrations.run();
 const seedResult = seed.run();
@@ -47,13 +49,15 @@ app.use(
   })
 );
 
-app.use(express.static(config.paths.frontend));
+app.use(attachUser);
 
 app.get('/api/health', (req, res) => {
   res.json({ ok: true, firma: config.firmaName, zeit: new Date().toISOString() });
 });
+app.use('/api/auth', authRoutes);
 
 app.use('/api', notFound);
+app.use(express.static(config.paths.frontend));
 app.use(errorHandler);
 
 app.listen(config.port, () => {

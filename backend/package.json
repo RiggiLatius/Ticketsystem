@@ -1,0 +1,25 @@
+{
+  "name": "reisser-reklamations-backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Internes Reklamations-Ticketsystem der Reisser AG — Backend",
+  "type": "commonjs",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "better-sqlite3": "^11.3.0",
+    "better-sqlite3-session-store": "^0.1.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "helmet": "^7.1.0",
+    "imapflow": "^1.0.164",
+    "mailparser": "^3.7.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.14"
+  }
+}

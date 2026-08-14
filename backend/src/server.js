@@ -59,6 +59,8 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/reklamation', publicFormRoutes);
 app.use('/api/tickets', ticketRoutes);
+const { requireLogin } = require('./middleware/auth');
+app.get('/api/anhang/:id', requireLogin, ticketRoutes.anhangHandler);
 
 app.use('/api', notFound);
 app.use(express.static(config.paths.frontend));

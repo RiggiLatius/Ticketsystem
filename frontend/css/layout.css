@@ -29,10 +29,12 @@
   margin-bottom: var(--space-6);
 }
 .login-brand__logo {
-  height: 56px;
+  height: 88px;
   width: auto;
+  max-width: 100%;
   display: block;
   margin: 0 auto var(--space-3);
+  overflow: visible;
 }
 .login-brand__sub {
   font-size: 13px;
@@ -48,7 +50,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 56px;
+  height: 64px;
   flex-shrink: 0;
 }
 .app-header__brand-wrap {
@@ -64,9 +66,11 @@
 }
 .app-header__brand:hover { text-decoration: none; }
 .app-header__logo {
-  height: 32px;
+  height: 40px;
   width: auto;
+  max-width: 220px;
   display: block;
+  overflow: visible;
 }
 .app-header__brand-sub {
   color: var(--color-text-muted);

@@ -11,10 +11,12 @@
   padding: var(--space-4) var(--space-5);
 }
 .public-page__logo {
-  height: 44px;
+  height: 60px;
   width: auto;
+  max-width: 100%;
   display: block;
   margin-bottom: var(--space-1);
+  overflow: visible;
 }
 .public-page__sub {
   font-size: 13px;

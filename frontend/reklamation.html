@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reisser AG — Reklamation einreichen</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/public-form.css" />
+  </head>
+  <body>
+    <div class="public-page">
+      <header class="public-page__header">
+        <div class="public-page__brand">Reisser AG</div>
+        <div class="public-page__sub">Reklamations-Ticketsystem</div>
+      </header>
+
+      <main class="public-page__main">
+        <div id="form-container" class="card">
+          <div class="card__header">
+            <h1 style="margin:0">Reklamation einreichen</h1>
+          </div>
+          <div class="card__body">
+            <p class="muted">
+              Bitte beschreiben Sie Ihr Anliegen möglichst genau. Alle mit *
+              gekennzeichneten Felder sind Pflichtfelder. Wenn Sie eine
+              E-Mail-Adresse angeben, erhalten Sie eine Bestätigung mit Ihrer
+              Ticket-Nummer.
+            </p>
+            <form id="rekla-form" novalidate>
+              <div id="form-error" class="alert alert--error" style="display:none"></div>
+
+              <div class="form-group">
+                <label class="form-label form-label--required" for="betreff">Betreff</label>
+                <input type="text" id="betreff" name="betreff" class="form-input" maxlength="300" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label form-label--required" for="kategorie">Kategorie / Reklamationsgrund</label>
+                <select id="kategorie" name="kategorie" class="form-select" required>
+                  <option value="">Bitte wählen…</option>
+                </select>
+                <div id="bereich-hinweis" class="form-help"></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label form-label--required" for="beschreibung">Beschreibung</label>
+                <textarea id="beschreibung" name="beschreibung" class="form-textarea" required></textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="einreicher_name">Ihr Name (optional)</label>
+                  <input type="text" id="einreicher_name" name="einreicher_name" class="form-input" maxlength="200" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="einreicher_email">Ihre E-Mail (optional, für Rückmeldungen)</label>
+                  <input type="email" id="einreicher_email" name="einreicher_email" class="form-input" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label form-label--required" for="prioritaet">Priorität</label>
+                <select id="prioritaet" name="prioritaet" class="form-select" required>
+                  <option value="normal" selected>Normal</option>
+                  <option value="hoch">Hoch</option>
+                  <option value="dringend">Dringend</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="anhang">Dateianhang (optional, max. 5 MB)</label>
+                <input type="file" id="anhang" name="anhang" class="form-input" />
+              </div>
+
+              <button type="submit" id="submit-btn" class="btn btn--primary">
+                Reklamation absenden
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div id="success-container" class="card" style="display:none">
+          <div class="card__header">
+            <h1 style="margin:0">Vielen Dank</h1>
+          </div>
+          <div class="card__body">
+            <div class="alert alert--success">
+              Ihre Reklamation wurde aufgenommen.
+            </div>
+            <p>
+              Ihre Ticket-Nummer lautet
+              <strong id="success-ticket-id" class="ticket-id"></strong>.
+              Bitte geben Sie diese bei Rückfragen an.
+            </p>
+            <p id="success-mail-hint" class="muted"></p>
+            <p>
+              <a href="/reklamation.html">Weitere Reklamation einreichen</a>
+            </p>
+          </div>
+        </div>
+      </main>
+
+      <footer class="public-page__footer">
+        Interner Bereich der Reisser AG · Reklamations-Ticketsystem
+      </footer>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/reklamationForm.js"></script>
+  </body>
+</html>

@@ -11,6 +11,7 @@ const seed = require('./db/seed');
 const { notFound, errorHandler } = require('./middleware/errorHandler');
 const { attachUser } = require('./middleware/auth');
 const authRoutes = require('./routes/auth');
+const publicFormRoutes = require('./routes/publicForm');
 
 migrations.run();
 const seedResult = seed.run();
@@ -55,6 +56,7 @@ app.get('/api/health', (req, res) => {
   res.json({ ok: true, firma: config.firmaName, zeit: new Date().toISOString() });
 });
 app.use('/api/auth', authRoutes);
+app.use('/api/reklamation', publicFormRoutes);
 
 app.use('/api', notFound);
 app.use(express.static(config.paths.frontend));

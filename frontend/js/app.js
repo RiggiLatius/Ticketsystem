@@ -4,14 +4,8 @@
 
   function renderShell() {
     const nav = [
-      UI.el(
-        'a',
-        {
-          class: 'app-header__nav-link',
-          href: '#/dashboard',
-        },
-        'Dashboard'
-      ),
+      UI.el('a', { class: 'app-header__nav-link', href: '#/dashboard' }, 'Dashboard'),
+      UI.el('a', { class: 'app-header__nav-link', href: '#/kennzahlen' }, 'Kennzahlen'),
     ];
     if (state.user.ist_admin) {
       nav.push(
@@ -78,6 +72,7 @@
   function registerRoutes() {
     Router.routes = [];
     Router.add('/dashboard', () => setPage(Dashboard.render(state.user)));
+    Router.add('/kennzahlen', () => setPage(Analytics.render(state.user)));
     Router.add(/^\/ticket\/([\w-]+)$/, (params) => {
       const id = params[0];
       if (global.TicketDetail) setPage(TicketDetail.render(state.user, id));

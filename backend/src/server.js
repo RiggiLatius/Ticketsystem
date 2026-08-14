@@ -14,6 +14,8 @@ const authRoutes = require('./routes/auth');
 const publicFormRoutes = require('./routes/publicForm');
 const ticketRoutes = require('./routes/tickets');
 const inboxRoutes = require('./routes/inbox');
+const userRoutes = require('./routes/users');
+const bereichRoutes = require('./routes/bereiche');
 const imapPoller = require('./services/imapPoller');
 
 migrations.run();
@@ -62,6 +64,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/reklamation', publicFormRoutes);
 app.use('/api/tickets', ticketRoutes);
 app.use('/api/inbox', inboxRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/bereiche', bereichRoutes);
 const { requireLogin } = require('./middleware/auth');
 app.get('/api/anhang/:id', requireLogin, ticketRoutes.anhangHandler);
 

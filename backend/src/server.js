@@ -13,6 +13,8 @@ const { attachUser } = require('./middleware/auth');
 const authRoutes = require('./routes/auth');
 const publicFormRoutes = require('./routes/publicForm');
 const ticketRoutes = require('./routes/tickets');
+const inboxRoutes = require('./routes/inbox');
+const imapPoller = require('./services/imapPoller');
 
 migrations.run();
 const seedResult = seed.run();
@@ -59,6 +61,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/reklamation', publicFormRoutes);
 app.use('/api/tickets', ticketRoutes);
+app.use('/api/inbox', inboxRoutes);
 const { requireLogin } = require('./middleware/auth');
 app.get('/api/anhang/:id', requireLogin, ticketRoutes.anhangHandler);
 
@@ -80,4 +83,5 @@ app.listen(config.port, () => {
     console.log('    -> Bitte nach dem ersten Login das Passwort ändern!');
   }
   console.log(line);
+  imapPoller.start();
 });

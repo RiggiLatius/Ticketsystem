@@ -340,3 +340,26 @@
   justify-content: flex-end;
   margin-top: var(--space-2);
 }
+
+/* Inbox */
+.inbox-mail { margin-bottom: var(--space-3); }
+.inbox-mail--done { opacity: 0.7; }
+.inbox-mail__meta {
+  display: flex;
+  gap: var(--space-3);
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2);
+}
+.inbox-mail__body {
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  white-space: pre-wrap;
+  max-height: 200px;
+  overflow-y: auto;
+}

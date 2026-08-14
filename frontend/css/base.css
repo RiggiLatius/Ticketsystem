@@ -13,9 +13,10 @@
   --color-text: #1f2328;
   --color-text-muted: #57606a;
   --color-text-subtle: #6e7781;
-  --color-primary: #1f5aa5;
-  --color-primary-hover: #174786;
+  --color-primary: #009F4D;
+  --color-primary-hover: #007a3a;
   --color-primary-text: #ffffff;
+  --color-brand: #009F4D;
   --color-danger: #c8321f;
   --color-danger-bg: #ffe8e4;
   --color-success: #1a7f37;
@@ -92,7 +93,7 @@ h3 { font-size: 16px; }
 p { margin: 0 0 var(--space-3); }
 
 a {
-  color: var(--color-primary);
+  color: #0a6f37;
   text-decoration: none;
 }
 a:hover { text-decoration: underline; }

@@ -14,7 +14,7 @@ module.exports = {
   env: process.env.NODE_ENV || 'development',
   port: int(process.env.PORT, 3000),
   sessionSecret: process.env.SESSION_SECRET || 'dev-secret-bitte-aendern',
-  firmaName: process.env.FIRMA_NAME || 'Reisser AG',
+  firmaName: process.env.FIRMA_NAME || 'Reisser Gruppe',
   mailFrom: process.env.MAIL_FROM || 'reklamation@firma.de',
   mailNotifyInbox: process.env.MAIL_NOTIFY_INBOX || 'reklamation@firma.de',
   smtp: {

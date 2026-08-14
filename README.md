@@ -1,4 +1,4 @@
-# Reisser AG — Reklamations-Ticketsystem
+# Reisser Gruppe — Reklamations-Ticketsystem
 
 Internes, webbasiertes Ticketsystem zur Erfassung und Bearbeitung von Reklamationen.
 Backend: Node.js/Express + SQLite (via `better-sqlite3`).

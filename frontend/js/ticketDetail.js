@@ -156,6 +156,8 @@
       UI.el('dd', {}, t.einreicher_name || UI.el('span', { class: 'muted' }, 'anonym')),
       UI.el('dt', {}, 'E-Mail Einreicher'),
       UI.el('dd', {}, t.einreicher_email || UI.el('span', { class: 'muted' }, '—')),
+      UI.el('dt', {}, 'Niederlassung'),
+      UI.el('dd', {}, t.niederlassung || UI.el('span', { class: 'muted' }, '—')),
       UI.el('dt', {}, 'Erstellt am'),
       UI.el('dd', {}, UI.formatDate(t.erstellt_am)),
       UI.el('dt', {}, 'Aktualisiert am'),

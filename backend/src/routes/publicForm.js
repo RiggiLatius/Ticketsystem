@@ -11,7 +11,11 @@ router.get('/kategorien', (_req, res) => {
     label: v.label,
     bereich: v.bereich,
   }));
-  res.json({ kategorien: list, prioritaeten: ticketService.PRIORITAETEN });
+  res.json({
+    kategorien: list,
+    prioritaeten: ticketService.PRIORITAETEN,
+    niederlassungen: ticketService.NIEDERLASSUNGEN,
+  });
 });
 
 function anhangHandler(req, res, next) {

@@ -3,6 +3,7 @@
   const errorBox = document.getElementById('form-error');
   const kategorieSel = document.getElementById('kategorie');
   const bereichHint = document.getElementById('bereich-hinweis');
+  const niederlassungSel = document.getElementById('niederlassung');
   const submitBtn = document.getElementById('submit-btn');
   const formContainer = document.getElementById('form-container');
   const successContainer = document.getElementById('success-container');
@@ -20,6 +21,12 @@
         opt.value = k.key;
         opt.textContent = k.label;
         kategorieSel.append(opt);
+      }
+      for (const n of data.niederlassungen || []) {
+        const opt = document.createElement('option');
+        opt.value = n;
+        opt.textContent = n;
+        niederlassungSel.append(opt);
       }
     } catch (e) {
       showError('Kategorien konnten nicht geladen werden. Bitte Seite neu laden.');

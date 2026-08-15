@@ -1,5 +1,10 @@
 const db = require('./database');
 
+function hasColumn(table, column) {
+  const rows = db.prepare(`PRAGMA table_info(${table})`).all();
+  return rows.some((r) => r.name === column);
+}
+
 function run() {
   db.exec(`
     CREATE TABLE IF NOT EXISTS users (
@@ -65,6 +70,11 @@ function run() {
       verarbeitet INTEGER NOT NULL DEFAULT 0
     );
   `);
+
+  // Additive Migrationen fuer bestehende DBs
+  if (!hasColumn('tickets', 'niederlassung')) {
+    db.exec(`ALTER TABLE tickets ADD COLUMN niederlassung TEXT`);
+  }
 }
 
 module.exports = { run };

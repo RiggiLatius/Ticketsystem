@@ -51,13 +51,20 @@
 
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label" for="einreicher_name">Ihr Name (optional)</label>
-                  <input type="text" id="einreicher_name" name="einreicher_name" class="form-input" maxlength="200" />
+                  <label class="form-label form-label--required" for="einreicher_name">Ihr Name</label>
+                  <input type="text" id="einreicher_name" name="einreicher_name" class="form-input" maxlength="200" required />
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="einreicher_email">Ihre E-Mail (optional, für Rückmeldungen)</label>
-                  <input type="email" id="einreicher_email" name="einreicher_email" class="form-input" />
+                  <label class="form-label form-label--required" for="einreicher_email">Ihre E-Mail (für Rückmeldungen)</label>
+                  <input type="email" id="einreicher_email" name="einreicher_email" class="form-input" required />
                 </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label form-label--required" for="niederlassung">Niederlassung</label>
+                <select id="niederlassung" name="niederlassung" class="form-select" required>
+                  <option value="">Bitte wählen…</option>
+                </select>
               </div>
 
               <div class="form-group">

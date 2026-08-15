@@ -207,6 +207,7 @@ async function ticketListWorkbook(user, opts) {
     { header: 'Zugewiesen an', key: 'zug', width: 24 },
     { header: 'Einreicher (Name)', key: 'ein_name', width: 22 },
     { header: 'Einreicher (E-Mail)', key: 'ein_email', width: 28 },
+    { header: 'Niederlassung', key: 'niederlassung', width: 22 },
     { header: 'Erstellt am', key: 'erstellt', width: 18 },
     { header: 'Aktualisiert am', key: 'aktualisiert', width: 18 },
   ];
@@ -223,6 +224,7 @@ async function ticketListWorkbook(user, opts) {
       zug: t.zugewiesen_name || '—',
       ein_name: t.einreicher_name || '',
       ein_email: t.einreicher_email || '',
+      niederlassung: t.niederlassung || '',
       erstellt: new Date((t.erstellt_am || '').replace(' ', 'T') + 'Z'),
       aktualisiert: new Date((t.aktualisiert_am || '').replace(' ', 'T') + 'Z'),
     });

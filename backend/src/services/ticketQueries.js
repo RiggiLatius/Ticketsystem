@@ -73,7 +73,8 @@ function listTickets(user, opts = {}) {
 
   const sql = `
     SELECT t.id, t.betreff, t.kategorie, t.prioritaet, t.status,
-           t.einreicher_name, t.einreicher_email, t.erstellt_am, t.aktualisiert_am,
+           t.einreicher_name, t.einreicher_email, t.niederlassung,
+           t.erstellt_am, t.aktualisiert_am,
            b.name AS bereich_name, t.bereich_id,
            u.name AS zugewiesen_name, t.zugewiesen_an
       FROM tickets t

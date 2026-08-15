@@ -12,6 +12,28 @@ const KATEGORIEN = {
 
 const PRIORITAETEN = ['normal', 'hoch', 'dringend'];
 
+const NIEDERLASSUNGEN = [
+  'Aalen',
+  'Balingen',
+  'Böblingen',
+  'Darmstadt/Frankfurt',
+  'Fellbach',
+  'Freiburg',
+  'Heilbronn',
+  'Karlsruhe/Pfinztal',
+  'Kempten',
+  'Kindsbach',
+  'Mannheim',
+  'Neu-Ulm',
+  'Offenburg',
+  'Radolfzell',
+  'Ravensburg',
+  'Schongau',
+  'Tuttlingen',
+  'Wittenberg',
+];
+const NIEDERLASSUNG_SET = new Set(NIEDERLASSUNGEN);
+
 function findBereichIdByName(name) {
   if (!name) return null;
   const row = db.prepare('SELECT id FROM bereiche WHERE name = ? AND aktiv = 1').get(name);
@@ -33,27 +55,40 @@ function createTicketFromForm(data, file) {
   }
   const betreff = String(data.betreff || '').trim();
   const beschreibung = String(data.beschreibung || '').trim();
+  const einreicherName = String(data.einreicher_name || '').trim().slice(0, 200);
+  const einreicherEmail = String(data.einreicher_email || '').trim().toLowerCase();
+  const niederlassung = String(data.niederlassung || '').trim();
+
   if (!betreff || !beschreibung) {
     const err = new Error('Betreff und Beschreibung sind erforderlich');
+    err.status = 400;
+    throw err;
+  }
+  if (!einreicherName) {
+    const err = new Error('Name ist erforderlich');
+    err.status = 400;
+    throw err;
+  }
+  if (!einreicherEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(einreicherEmail)) {
+    const err = new Error('Gültige E-Mail-Adresse ist erforderlich');
+    err.status = 400;
+    throw err;
+  }
+  if (!niederlassung || !NIEDERLASSUNG_SET.has(niederlassung)) {
+    const err = new Error('Bitte eine gültige Niederlassung auswählen');
     err.status = 400;
     throw err;
   }
   const prioritaet = PRIORITAETEN.includes(data.prioritaet) ? data.prioritaet : 'normal';
   const bereichId = kat.bereich ? findBereichIdByName(kat.bereich) : null;
   const id = uuid();
-  const einreicherEmail = data.einreicher_email
-    ? String(data.einreicher_email).trim().toLowerCase()
-    : null;
-  const einreicherName = data.einreicher_name
-    ? String(data.einreicher_name).trim().slice(0, 200)
-    : null;
   const anhangPfad = file ? file.filename : null;
 
   db.prepare(
     `INSERT INTO tickets
        (id, betreff, beschreibung, kategorie, bereich_id, prioritaet, status,
-        einreicher_name, einreicher_email, anhang_pfad)
-     VALUES (?, ?, ?, ?, ?, ?, 'offen', ?, ?, ?)`
+        einreicher_name, einreicher_email, niederlassung, anhang_pfad)
+     VALUES (?, ?, ?, ?, ?, ?, 'offen', ?, ?, ?, ?)`
   ).run(
     id,
     betreff.slice(0, 300),
@@ -63,6 +98,7 @@ function createTicketFromForm(data, file) {
     prioritaet,
     einreicherName,
     einreicherEmail,
+    niederlassung,
     anhangPfad
   );
 
@@ -73,6 +109,7 @@ function createTicketFromForm(data, file) {
       aktion: 'ticket_erstellt',
       kategorie: kat.label,
       bereich: kat.bereich,
+      niederlassung,
       prioritaet,
       anhang: !!anhangPfad,
     }),
@@ -98,11 +135,12 @@ async function sendPublicNotifications(ticket) {
       '',
       'vielen Dank für Ihre Reklamation. Wir haben Ihr Anliegen mit folgender Referenz aufgenommen:',
       '',
-      `  Ticket-Nummer: ${kurzId}`,
-      `  Betreff:       ${ticketRow.betreff}`,
-      `  Kategorie:     ${kat?.label || ticketRow.kategorie}`,
-      `  Priorität:     ${ticketRow.prioritaet}`,
-      `  Zuständig:     ${bereichName}`,
+      `  Ticket-Nummer:  ${kurzId}`,
+      `  Betreff:        ${ticketRow.betreff}`,
+      `  Kategorie:      ${kat?.label || ticketRow.kategorie}`,
+      `  Niederlassung:  ${ticketRow.niederlassung || '-'}`,
+      `  Priorität:      ${ticketRow.prioritaet}`,
+      `  Zuständig:      ${bereichName}`,
       '',
       'Wir melden uns umgehend zurück. Bitte antworten Sie bei Rückfragen auf diese E-Mail, ohne',
       `die Ticket-Referenz "[Ticket #${kurzId}]" im Betreff zu verändern.`,
@@ -132,11 +170,12 @@ async function sendPublicNotifications(ticket) {
     const text = [
       `Es wurde eine neue Reklamation eingereicht.`,
       '',
-      `  Ticket-Nummer: ${kurzId}`,
-      `  Kategorie:     ${kat?.label || ticketRow.kategorie}`,
-      `  Bereich:       ${bereichName}`,
-      `  Priorität:     ${ticketRow.prioritaet}`,
-      `  Einreicher:    ${ticketRow.einreicher_name || '-'} <${ticketRow.einreicher_email || '-'}>`,
+      `  Ticket-Nummer:  ${kurzId}`,
+      `  Kategorie:      ${kat?.label || ticketRow.kategorie}`,
+      `  Bereich:        ${bereichName}`,
+      `  Niederlassung:  ${ticketRow.niederlassung || '-'}`,
+      `  Priorität:      ${ticketRow.prioritaet}`,
+      `  Einreicher:     ${ticketRow.einreicher_name || '-'} <${ticketRow.einreicher_email || '-'}>`,
       '',
       `Beschreibung:`,
       ticketRow.beschreibung,
@@ -152,6 +191,7 @@ async function sendPublicNotifications(ticket) {
 module.exports = {
   KATEGORIEN,
   PRIORITAETEN,
+  NIEDERLASSUNGEN,
   createTicketFromForm,
   sendPublicNotifications,
   addEvent,

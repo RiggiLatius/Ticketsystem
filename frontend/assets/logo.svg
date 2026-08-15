@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 340" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Reisser Gruppe">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 380" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Reisser Gruppe">
   <title>Reisser Gruppe</title>
-  <text x="10" y="215"
+  <text x="20" y="240"
         font-family="'Arial Black','Helvetica Neue',Impact,sans-serif"
         font-weight="900"
         font-size="200"
         letter-spacing="-5"
         fill="#009F4D">REISSER</text>
-  <text x="810" y="305"
+  <text x="985" y="345"
         text-anchor="end"
         font-family="'Helvetica Neue',Arial,sans-serif"
         font-weight="400"
-        font-size="56"
-        letter-spacing="18"
+        font-size="60"
+        letter-spacing="20"
         fill="#A6A6A6">GRUPPE</text>
 </svg>

@@ -11,7 +11,7 @@
   padding: var(--space-4) var(--space-5);
 }
 .public-page__logo {
-  height: 60px;
+  height: 30px;
   width: auto;
   max-width: 100%;
   display: block;

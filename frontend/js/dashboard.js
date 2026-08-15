@@ -173,11 +173,31 @@
 
   Dashboard.render = function (user) {
     const wrap = UI.el('div', { class: 'stack' });
+    const exportBtn = UI.el(
+      'a',
+      {
+        class: 'btn btn--sm',
+        href: '#',
+        onclick: (e) => {
+          e.preventDefault();
+          const params = new URLSearchParams();
+          for (const [k, v] of Object.entries(state.filter)) if (v != null) params.set(k, v);
+          window.location = '/api/tickets/export.xlsx?' + params.toString();
+        },
+        title: 'Aktuelle Ticket-Liste als Excel herunterladen',
+      },
+      'Excel-Export'
+    );
     const heading = UI.el(
       'div',
       { class: 'page-heading' },
-      UI.el('h1', { style: 'margin:0' }, 'Ticket-Dashboard'),
-      UI.el('div', { class: 'muted' }, user.ist_admin ? 'Alle Bereiche' : `Bereiche: ${user.bereiche.map((b) => b.name).join(', ') || 'keine'}`)
+      UI.el(
+        'div',
+        {},
+        UI.el('h1', { style: 'margin:0' }, 'Ticket-Dashboard'),
+        UI.el('div', { class: 'muted' }, user.ist_admin ? 'Alle Bereiche' : `Bereiche: ${user.bereiche.map((b) => b.name).join(', ') || 'keine'}`)
+      ),
+      exportBtn
     );
 
     const listBox = UI.el('div', { id: 'ticket-list' });

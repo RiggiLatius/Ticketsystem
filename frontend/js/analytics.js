@@ -187,6 +187,20 @@
       'Filter zurücksetzen'
     );
 
+    const exportBtn = UI.el(
+      'a',
+      {
+        class: 'btn btn--sm',
+        href: '#',
+        onclick: (e) => {
+          e.preventDefault();
+          window.location = '/api/analytics/export.xlsx?' + queryString();
+        },
+        title: 'Kennzahlen mit aktuellen Filtern als Excel herunterladen',
+      },
+      'Excel-Export'
+    );
+
     container.append(
       UI.el('div', { class: 'analytics-filter__row' },
         UI.el('div', { class: 'analytics-filter__group' },
@@ -207,7 +221,8 @@
         UI.el('div', { class: 'analytics-filter__group' },
           UI.el('label', { class: 'form-label' }, 'Priorität'), prioMulti),
         UI.el('div', { class: 'analytics-filter__spacer' }),
-        reset
+        reset,
+        exportBtn
       )
     );
   }

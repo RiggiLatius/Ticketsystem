@@ -43,6 +43,22 @@ router.get('/statistik', (req, res) => {
   res.json(statistik(req.user));
 });
 
+router.get('/export.xlsx', async (req, res, next) => {
+  try {
+    const { ticketListWorkbook } = require('../services/exportExcel');
+    const { workbook, filename } = await ticketListWorkbook(req.user, req.query);
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    );
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    await workbook.xlsx.write(res);
+    res.end();
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get('/meta/zuweisbare-benutzer', (_req, res) => {
   const users = db
     .prepare(

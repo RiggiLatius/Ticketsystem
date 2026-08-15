@@ -68,7 +68,7 @@
         UI.el(
           'div',
           { class: 'login-brand' },
-          UI.el('img', { class: 'login-brand__logo', src: '/assets/logo.svg', alt: 'Reisser Gruppe' }),
+          UI.el('img', { class: 'login-brand__logo', src: '/assets/logo.png', alt: 'Reisser Gruppe' }),
           UI.el('div', { class: 'login-brand__sub', text: 'Reklamations-Ticketsystem' })
         ),
         form

@@ -24,7 +24,7 @@
         UI.el(
           'a',
           { class: 'app-header__brand', href: '#/dashboard', title: 'Reisser Gruppe' },
-          UI.el('img', { class: 'app-header__logo', src: '/assets/logo-mark.svg', alt: 'Reisser Gruppe' }),
+          UI.el('img', { class: 'app-header__logo', src: '/assets/logo.png', alt: 'Reisser Gruppe' }),
           UI.el('span', { class: 'app-header__brand-sub', text: 'Reklamations-Ticketsystem' })
         ),
         UI.el('nav', { class: 'app-header__nav' }, ...nav)
